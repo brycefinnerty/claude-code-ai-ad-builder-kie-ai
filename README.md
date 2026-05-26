@@ -64,6 +64,30 @@ Uses Sora 2 text-to-video (or image-to-video with the product photo URL) to gene
 
 Uses the `generate-youtube-thumbnail` skill — 5 CTR-tested formulas, likeness lockdown via reference URLs, parallel batch firing against Nano Banana 2. See `skills/generate-youtube-thumbnail/`.
 
+#### Pixar-style 3D animated ad
+
+> "Make a Pixar-style ad for [product] — anthropomorphized mascot, 8-beat story arc"
+
+Multi-step pipeline: lock a cast sheet → ChatGPT Image 2 storyboard stills (sequential, prior frame as reference for identity lock) → Seedance 2.0 image-to-video per beat (`bytedance/seedance-2`) → ffmpeg stitch + burn captions. See `shared/skills/pixar-style-ad/prompting/guide.md`.
+
+#### Claymation / Aardman-style ad
+
+> "Make a claymation ad — sculpted plasticine characters, narrator-driven, 60–115s"
+
+Same backbone as Pixar but with an 8-beat narrator-driven story arc and clay textures. ChatGPT Image 2 storyboard (sequential for identity, parallel for beat 5 chart; falls back to `nano-banana-pro` for close-ups if clay texture flattens) → Seedance 2.0 i2v per beat → ffmpeg stitch with optional `fps=12,fps=24` stop-motion judder. VO is generated externally (ElevenLabs) and mixed in post. See `shared/skills/claymation-ad/prompting/guide.md`.
+
+#### Burn captions onto a finished video
+
+> "Add captions to this MP4"
+
+Out-of-band post-step (no KIE call) that works on any source — Pixar, claymation, UGC, B-roll. HyperFrames + Whisper `medium.en` for transcription → group word-level transcript into reading phrases → render captions-only HTML over `#ff00ff` magenta → ffmpeg chroma-key overlay. See `shared/skills/caption-video/prompting/guide.md`.
+
+#### Static Meta image ad creative (37-template library)
+
+> "Make me an Apple Notes-style ad for my product" / "Generate a Forbes editorial ad" / "Clone this comparison-table ad as a template"
+
+A four-skill family for static Meta image ads with a shared library of **37 validated prompt templates** (Apple Notes lists, editorial hero, fake Google search, comparison tables, sticky-note flatlays, fake Slack threads, ChatGPT-conversation ads, iMessage screenshots, magazine cover, billboard, museum exhibit, more). Pick **`chatgpt-image-ad`** for typography-heavy / UI-mimicry creatives (hits KIE's dedicated `/api/v1/gpt4o-image/generate` endpoint) and **`nano-banana-image-ad`** for photoreal / lifestyle / multi-reference creatives (Nano Banana 2 / Pro / Edit via `/jobs/createTask`). The companion **`image-ad-clone-chatgpt`** / **`image-ad-clone-nano-banana`** skills reverse-engineer any existing ad URL into a new library entry. Output is image files; pair with the separate `meta-ad-builder` skill to publish as paused Meta ads. Reference images must be **public URLs** (KIE has no presigned upload). **Read `shared/skills/image-ad-prompting/OVERVIEW.md` first** — it has the decision tree, the aspect-ratio compatibility matrix per backend, and the standard generate / clone workflows.
+
 #### Other things to try
 
 - "Recreate this influencer's look from a reference photo"
@@ -76,6 +100,16 @@ Uses the `generate-youtube-thumbnail` skill — 5 CTR-tested formulas, likeness 
 |------|-------------|
 | `skills/kie-external-api/` | The core skill: API reference, prompting guide, per-model prompt library, analyze-video + clone-ad workflows |
 | `skills/generate-youtube-thumbnail/` | Specialized YouTube thumbnail skill with 5 CTR formulas and parallel batch script |
+| `skills/chatgpt-image-ad/` | Static Meta image-ad creatives via `/api/v1/gpt4o-image/generate` (typography / UI mimicry). Live-validated. |
+| `skills/nano-banana-image-ad/` | Static Meta image-ad creatives via Nano Banana 2 / Pro / Edit (photoreal / lifestyle). Live-validated. |
+| `skills/image-ad-clone-chatgpt/` | Reverse-engineer an existing ad URL into a reusable gpt-image-2 template. |
+| `skills/image-ad-clone-nano-banana/` | Reverse-engineer an existing ad URL into a reusable Nano Banana template. |
+| `shared/skills/image-ad-prompting/` | Shared brain: 37 validated templates, safety suffixes, entry format, ecosystem `OVERVIEW.md`. |
+| `shared/skills/pixar-style-ad/` | Cross-API recipe: 8-beat anthropomorphized mascot ad via GPT Image 2 storyboard + Seedance 2.0 i2v |
+| `shared/skills/claymation-ad/` | Cross-API recipe: Aardman-style 8-beat clay narrative ad; same backbone as Pixar with stop-motion judder option |
+| `shared/skills/caption-video/` | Out-of-band post step: HyperFrames + Whisper + ffmpeg chroma-key to burn captions onto any finished MP4 |
+| `shared/skills/meta-ad-builder/` | Publish finished creatives as paused Meta ads via the Meta Marketing API. |
+| `shared/scripts/check-context.sh` | SessionStart banner — shows installed skills + `.env` / `MASTER_CONTEXT.md` status + ecosystem pointers. |
 | `MASTER_CONTEXT.template.md` | Template for your workspace context (credit costs, brand voice, image hosting, learnings) |
 | `MASTER_CONTEXT.md` | Your personalized copy (created by setup, not committed to git) |
 | `.env` | Your API key (created by setup, never committed) |
@@ -123,7 +157,7 @@ The agent will **stop and ask** how to host a file if you pass a local path and 
 | **Nano Banana 2** (default) | Image | `nano-banana-2` | UGC stills, character sheets, product shots, influencer recreation |
 | **Nano Banana Pro** | Image | `nano-banana-pro` | Premium image quality (Gemini 3 Pro) |
 | **Nano Banana Edit** | Image | `nano-banana-edit` | Inpaint / edit existing image |
-| **Seedance 2** | Video | per marketplace | (verify on [kie.ai/market](https://kie.ai/market)) |
+| **Seedance 2** | Video | `bytedance/seedance-2` | Image-to-video for storyboard-driven ads (Pixar / claymation beats). Confirm current string on [kie.ai/market](https://kie.ai/market). |
 
 Always verify exact `model` strings on the marketplace page for your account — KIE adds and renames models as vendors update.
 
