@@ -124,7 +124,7 @@ Show all paths. Ask "Use all / use these specific ones / regenerate / cancel." S
 - **Meta upload** — different skill.
 - **Nano Banana** — use `nano-banana-image-ad`.
 - **Video / carousel / DCO** — image only.
-- **Editing the shared library** — use `image-ad-clone-chatgpt`.
+- **Editing the shared library** — use `image-ad-clone` (asks which backend at Phase 1).
 
 ## Common errors
 
@@ -143,6 +143,6 @@ Show all paths. Ask "Use all / use these specific ones / regenerate / cancel." S
 
 - **[shared/skills/chatgpt-image-ad/prompting/guide.md](../../shared/skills/chatgpt-image-ad/prompting/guide.md)** — model-specific prompting
 - **[shared/skills/image-ad-prompting/prompting/prompt-library.md](../../shared/skills/image-ad-prompting/prompting/prompt-library.md)** — shared template library
-- **[image-ad-clone-chatgpt skill](../image-ad-clone-chatgpt/SKILL.md)** — clone existing ads into templates
+- **[image-ad-clone skill](../image-ad-clone/SKILL.md)** — single backend-agnostic skill that reverse-engineers an existing ad into a reusable library entry
 - **[kie-external-api skill](../kie-external-api/SKILL.md)** — KIE conventions
 - **[nano-banana-image-ad skill](../nano-banana-image-ad/SKILL.md)** — sibling skill for photoreal templates

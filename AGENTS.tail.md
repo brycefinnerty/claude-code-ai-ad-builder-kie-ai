@@ -5,10 +5,10 @@
 - **Skills:**
   - `kie-external-api` — main API reference (Veo/Sora/Nano Banana endpoints, auth, polling, jobs vs first-party paths).
   - `generate-youtube-thumbnail` — YouTube thumbnail batch workflow on top of Nano Banana 2.
-  - **Image-ad ecosystem** (4 skills + shared 37-template library) — see [shared/skills/image-ad-prompting/OVERVIEW.md](shared/skills/image-ad-prompting/OVERVIEW.md):
-    - `chatgpt-image-ad` — generate via KIE `gpt-image-2` (verify exact marketplace string at kie.ai/market on first use). Typography / UI-mimicry creatives.
-    - `nano-banana-image-ad` — generate via KIE `nano-banana-2`/`-pro`/`-edit`. Photoreal / lifestyle creatives.
-    - `image-ad-clone-chatgpt` / `image-ad-clone-nano-banana` — reverse-engineer existing ads into reusable templates.
+  - **Image-ad ecosystem** (3 skills + shared 37-template library) — see [shared/skills/image-ad-prompting/OVERVIEW.md](shared/skills/image-ad-prompting/OVERVIEW.md):
+    - `chatgpt-image-ad` — generate via KIE's dedicated `/api/v1/gpt4o-image/generate` endpoint (typography / UI-mimicry creatives).
+    - `nano-banana-image-ad` — generate via KIE `nano-banana-2`/`-pro`/`-edit` (photoreal / lifestyle creatives).
+    - `image-ad-clone` — single backend-agnostic skill that reverse-engineers existing ads into reusable templates (asks which backend to validate against at Phase 1; optionally cross-validates at Phase 8).
 - **Setup check:** `./scripts/check-kie-env.sh`.
 - **Reference images:** KIE has no presigned-upload flow. Hosted public URLs only — see *Image hosting* in MASTER_CONTEXT.md.
 - **Logging:** Log every generation call to `logs/kie-api.jsonl` (schema in `logs/README.md`).

@@ -140,7 +140,7 @@ Selected variants ready for your Meta-ad-builder skill.
 - **Meta upload** — different skill.
 - **ChatGPT Image 2** — use `chatgpt-image-ad`.
 - **Video / carousel / DCO** — image only.
-- **Editing the shared library** — use `image-ad-clone-nano-banana`.
+- **Editing the shared library** — use `image-ad-clone` (asks which backend at Phase 1).
 
 ## Common errors
 
@@ -159,6 +159,6 @@ Selected variants ready for your Meta-ad-builder skill.
 
 - **[shared/skills/nano-banana-image-ad/prompting/guide.md](../../shared/skills/nano-banana-image-ad/prompting/guide.md)** — model-specific prompting
 - **[shared/skills/image-ad-prompting/prompting/prompt-library.md](../../shared/skills/image-ad-prompting/prompting/prompt-library.md)** — shared template library
-- **[image-ad-clone-nano-banana skill](../image-ad-clone-nano-banana/SKILL.md)** — clone existing ads into templates
+- **[image-ad-clone skill](../image-ad-clone/SKILL.md)** — single backend-agnostic skill that reverse-engineers an existing ad into a reusable library entry
 - **[kie-external-api skill](../kie-external-api/SKILL.md)** — KIE conventions (sessions, credit cost, QA, logs)
 - **[chatgpt-image-ad skill](../chatgpt-image-ad/SKILL.md)** — sibling skill for typography-heavy / UI-mimicry templates
