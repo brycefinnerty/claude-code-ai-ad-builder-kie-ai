@@ -287,7 +287,7 @@ Every KIE generation call is async. Two ways to get results:
 
 - **Polling (default)** — agent polls the matching `record-info` endpoint every ~30 seconds:
   - Veo: `GET /api/v1/veo/record-info?taskId=…` (`successFlag` 0/1/2)
-  - ChatGPT Image: `GET /api/v1/gpt4o-image/record-info?taskId=…` (`successFlag` 0/1/2)
+  - ChatGPT Image 2: `GET /api/v1/gpt4o-image/record-info?taskId=…` (`successFlag` 0/1/2)
   - Jobs (Sora / Kling / Nano Banana / Seedance / etc.): `GET /api/v1/jobs/recordInfo?taskId=…` (`state` waiting/queuing/generating/success/fail)
 - **Webhook** — pass `callBackUrl` in the request body; KIE POSTs the final payload when done. Use for production / long-running jobs if you have an endpoint up.
 

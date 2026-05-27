@@ -17,7 +17,7 @@
 | **KIE endpoint** | `/api/v1/gpt4o-image/generate` (dedicated) | `/api/v1/jobs/createTask` (marketplace) |
 | **Best for** | Brand has a slightly stylized / editorial / poster-art aesthetic; A/B comparison runs; users who hit Nano Banana rate limits | The default for pure photoreal AI-influencer / UGC use |
 
-**Default recommendation:** start with Nano Banana ([character-sheet.md](character-sheet.md)). Use this gpt-image-2 version when (a) the brand aesthetic specifically wants the gpt-image-2 look, (b) you're running a side-by-side test, or (c) the user explicitly asks for ChatGPT Image.
+**Default recommendation:** start with Nano Banana ([character-sheet.md](character-sheet.md)). Use this gpt-image-2 version when (a) the brand aesthetic specifically wants the gpt-image-2 look, (b) you're running a side-by-side test, or (c) the user explicitly asks for ChatGPT Image 2.
 
 **Aspect-ratio note:** gpt-image-2 on KIE doesn't support `9:16` (the Nano Banana version uses 9:16 by default). For character sheets here, use **`2:3`** instead — tall portrait, close to 9:16 in framing, supported by the endpoint.
 
