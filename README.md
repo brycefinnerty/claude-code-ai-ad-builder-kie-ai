@@ -1,6 +1,6 @@
 # KIE.ai Video + Image — Agent Skill Pack
 
-Create AI marketing videos and images using your [KIE.ai](https://kie.ai) account, powered by AI agents in **Claude Code** or **Cursor**. Supports the full KIE creative stack — **Seedance 2.0** (flagship video, plus Fast and 1.5 Pro variants), **Sora 2** + **Sora 2 Pro**, **Veo 3.1** (with all three generation modes), **Kling 3.0**, **Nano Banana 2 / Pro / Edit**, and **ChatGPT Image 2** via KIE's dedicated `/gpt4o-image` endpoint — plus a 37-template static Meta image-ad library and pipelines for **Pixar-style** and **claymation** animated ads.
+Create AI marketing videos and images using your [KIE.ai](https://kie.ai?ref=e8f3468e873971c3dbf98e4e8a6968f0) account, powered by AI agents in **Claude Code** or **Cursor**. Supports the full KIE creative stack — **Seedance 2.0** (flagship video, plus Fast and 1.5 Pro variants), **Sora 2** + **Sora 2 Pro**, **Veo 3.1** (with all three generation modes), **Kling 3.0**, **Nano Banana 2 / Pro / Edit**, and **ChatGPT Image 2** via KIE's dedicated `/gpt4o-image` endpoint — plus a 37-template static Meta image-ad library and pipelines for **Pixar-style** and **claymation** animated ads.
 
 **Key KIE characteristics to know upfront:**
 - **Async by design.** Every generation call returns a `taskId`; results arrive via polling (`record-info` endpoints) or webhooks (`callBackUrl`).
@@ -266,6 +266,8 @@ The cross-API `meta-ad-builder` skill (in `shared/skills/`) takes a finished cre
 ## Your API key
 
 Your key authenticates with the KIE API. During setup you paste it once and the agent uses it from `.env` automatically. You never need to paste it into chat.
+
+Need a KIE.ai account first? Create one here: **[https://kie.ai?ref=e8f3468e873971c3dbf98e4e8a6968f0](https://kie.ai?ref=e8f3468e873971c3dbf98e4e8a6968f0)**
 
 Find your key: **[KIE Dashboard → API Key](https://kie.ai/api-key)**
 

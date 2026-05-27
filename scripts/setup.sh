@@ -12,7 +12,8 @@ if [[ ! -f "$ROOT/.env" ]]; then
   cp "$ROOT/.env.example" "$ROOT/.env"
   echo "Created .env from template."
   echo ""
-  echo "Go to https://kie.ai/api-key and copy your API key."
+  echo "Need a KIE.ai account first? Sign up here: https://kie.ai?ref=e8f3468e873971c3dbf98e4e8a6968f0"
+  echo "Then go to https://kie.ai/api-key and copy your API key."
   echo ""
   echo "Paste it below (or press Enter to skip and edit .env manually):"
   read -r kie_key

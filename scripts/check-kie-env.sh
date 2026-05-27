@@ -12,7 +12,8 @@ BASE="${KIE_BASE_URL:-https://api.kie.ai}"
 
 if [[ -z "${KIE_API_KEY:-}" ]] || [[ "$KIE_API_KEY" == "your_api_key_here" ]]; then
   echo "No valid API key found. Edit .env with your KIE API key." >&2
-  echo "Get your key at: https://kie.ai/api-key" >&2
+  echo "Need a KIE.ai account first? Sign up here: https://kie.ai?ref=e8f3468e873971c3dbf98e4e8a6968f0" >&2
+  echo "Then get your key at: https://kie.ai/api-key" >&2
   exit 1
 fi
 
