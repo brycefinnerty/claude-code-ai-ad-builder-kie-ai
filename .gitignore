@@ -15,7 +15,12 @@ __pycache__/
 *.pyc
 outputs/
 output/
-references/youtube thumbnail/
+
+# All reference media is local-only (face photos, product shots, style boards).
+# Drop your refs into references/influencers/, references/products/,
+# references/aesthetics/, etc. — they stay on your machine.
+references/
+!references/README.md
 
 
 test-outputs/
