@@ -7,6 +7,24 @@ Create AI marketing videos and images using your [KIE.ai](https://kie.ai) accoun
 - **URL-only references.** KIE has no presigned-upload flow — reference images must be publicly reachable URLs (your bucket, CDN, image host).
 - **Marketplace catalogue evolves.** Model strings change as KIE adds/renames models. Verify on [kie.ai/market](https://kie.ai/market) on first use; the agent records confirmed strings in `MASTER_CONTEXT.md`.
 
+## Prerequisites
+
+The agent and the basic KIE workflows (image generation, video generation, polling) work with just **Python 3.10+** and the API key from setup. Some multi-step pipelines need a few extra CLI tools:
+
+| Tool | Required for | Install (macOS) |
+|---|---|---|
+| **Python 3.10+** | Everything (the image-ad generators are stdlib-only — no pip install) | preinstalled or `brew install python@3.12` |
+| **`ffmpeg`** | Pixar-style ad, claymation ad, caption-video (stitching + chroma-key overlay) | `brew install ffmpeg` |
+| **`jq`** | Several bash scripts (pixar-style-ad, etc.) | `brew install jq` |
+| **Node.js + `npx hyperframes`** | Caption burn-in workflow | `brew install node` (the skill runs `npx` on demand) |
+| **`whisper`** Python package | Caption transcription | `pip install openai-whisper` (or `pip3`) |
+| **`meta-ad-builder` deps** | Publishing to Meta Marketing API | `pip install -r shared/skills/meta-ad-builder/scripts/requirements.txt` |
+| **Image hosting** | KIE reference images need public URLs (no presigned upload on KIE) | Your own R2 / S3 / Cloudinary, or a temp host like `0x0.st` or imgur |
+
+The image-ad generator scripts (`chatgpt-image-ad`, `nano-banana-image-ad`, `image-ad-clone`) are intentionally stdlib-only — no extra installs needed. The deps above are only required when you invoke the matching multi-step workflow.
+
+Linux users: `apt install ffmpeg jq nodejs python3`. Windows users: WSL2 recommended; the shell scripts assume bash.
+
 ## Get started (5 minutes)
 
 ### 1. Clone this repo
@@ -55,25 +73,25 @@ The 9-layer UGC formula tuned for Seedance 2.0 (iPhone-shot aesthetic, natural e
 
 > "Premium reveal of [product] — dark void, text narrative, hero rotation"
 
-Dark-void aesthetic, text overlays narrating positioning, no person on screen. See `seedance-2-premium-reveal.md`.
+Dark-void aesthetic, text overlays narrating positioning, no person on screen. See `skills/kie-external-api/prompting/prompt-library/seedance-2-premium-reveal.md`.
 
 #### Product hero with elemental effects
 
 > "Seedance product hero — water splash, mist, slow rotation"
 
-Splash, mist, light rays, slow rotation. See `seedance-2-product-hero.md`.
+Splash, mist, light rays, slow rotation. See `skills/kie-external-api/prompting/prompt-library/seedance-2-product-hero.md`.
 
 #### Studio lookbook with voiceover
 
 > "Studio lookbook of [product] — multi-look, polished, with voiceover script"
 
-Polished editorial / lookbook style, multi-shot, with embedded dialogue. See `seedance-2-studio-lookbook.md`.
+Polished editorial / lookbook style, multi-shot, with embedded dialogue. See `skills/kie-external-api/prompting/prompt-library/seedance-2-studio-lookbook.md`.
 
 #### Feature walkthrough demo
 
 > "Seedance feature walkthrough — fast-paced, show off [features]"
 
-Fast-paced product-demo cuts. See `seedance-2-feature-walkthrough.md`.
+Fast-paced product-demo cuts. See `skills/kie-external-api/prompting/prompt-library/seedance-2-feature-walkthrough.md`.
 
 **Seedance variants on KIE:** `bytedance/seedance-2` (flagship), `bytedance/seedance-2-fast` (cheaper / faster), `bytedance/seedance-1.5-pro` (legacy). Always verify current strings on the marketplace.
 
@@ -339,7 +357,7 @@ This copies your changes to `.claude/skills/` and `.cursor/skills/` (which are g
 
 | Model | Guide |
 |-------|--------|
-| Seedance 2.0 | Aligned to ByteDance's published Seedance prompting platform (the skill summarizes this in `prompting/prompt-library/seedance-2.md`) |
+| Seedance 2.0 | Aligned to ByteDance's published Seedance prompting platform (the skill summarizes this in `skills/kie-external-api/prompting/prompt-library/seedance-2.md`) |
 | Veo 3.1 | [Google Cloud — Veo 3.1](https://cloud.google.com/blog/products/ai-machine-learning/ultimate-prompting-guide-for-veo-3-1) |
 | Sora 2 | [OpenAI — Sora 2 prompting guide](https://developers.openai.com/cookbook/examples/sora/sora2_prompting_guide) |
 | Kling 3.0 | [Kling — user guide](https://kling.ai/quickstart/klingai-video-3-model-user-guide) |
